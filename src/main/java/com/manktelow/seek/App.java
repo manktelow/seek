@@ -44,7 +44,7 @@ public class App
     }
 
     public static void printCarCountByDay(CounterService counterService) {
-        System.out.println("\nCar Count By Day:");
+        System.out.println("\nCar count by day:");
         counterService.getCarCountByDay().forEach((date, count) -> System.out.println(date + " " + count));
     }
 
@@ -54,7 +54,7 @@ public class App
     }
 
     public static void printTotalCarCount(CounterService counterService) {
-        System.out.println("\nTotal Car Count:");
+        System.out.println("\nTotal car count:");
         System.out.println(counterService.getTotalCarCount().orElse(null));
     }
 
