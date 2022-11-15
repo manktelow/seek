@@ -6,7 +6,6 @@ import com.manktelow.seek.service.CounterService;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -29,11 +28,8 @@ public class App
         File file = new File(filename);
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            CounterService counterService = CounterService.withSortedWindows(
-                    br.lines()
-                            .map(Window::fromString)
-                            .sorted(Comparator.comparing(Window::getDateTime))
-                            .toList()
+            CounterService counterService = CounterService.withWindows(
+                    br.lines().map(Window::fromString).toList()
             );
 
             printTotalCarCount(counterService);

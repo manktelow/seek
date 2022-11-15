@@ -16,8 +16,10 @@ public class CounterService {
         this.counter = counter;
     }
 
-    public static CounterService withSortedWindows(List<Window> windows) {
-        return new CounterService(new Counter(windows));
+    public static CounterService withWindows(List<Window> windows) {
+        return new CounterService(new Counter(
+                windows.stream().sorted(Comparator.comparing(Window::getDateTime)).toList())
+        );
     }
 
     /**
@@ -28,7 +30,7 @@ public class CounterService {
         // Use a linkedHashMap to guarantee ordering
         LinkedHashMap<String, Long> countsByDay = new LinkedHashMap<>();
 
-        counter.getWindows().stream()
+        counter.getSortedWindows().stream()
                 .collect(Collectors.groupingBy(Window::getDate, Collectors.summarizingInt(Window::getCarCount)))
                 .entrySet()
                 .stream()
@@ -49,7 +51,7 @@ public class CounterService {
         LocalDateTime smallestWindow = null;
         Integer leastCars = null;
 
-        for (Window current : counter.getWindows()) {
+        for (Window current : counter.getSortedWindows()) {
             boolean hasMidWindow = false;
             boolean hasStartWindow = false;
 
@@ -88,7 +90,7 @@ public class CounterService {
      * @return List<Window> list of windows with their datetime and count
      */
     public List<Window> getTopThreeWindowsByCarCount() {
-        return counter.getWindows().stream()
+        return counter.getSortedWindows().stream()
                 .sorted(Comparator.comparing(Window::getCarCount).reversed())
                 .limit(3)
                 .toList();
@@ -99,7 +101,7 @@ public class CounterService {
      * @return Optional<Long> sum of all cars counted
      */
     public Optional<Integer> getTotalCarCount() {
-        return counter.getWindows().stream()
+        return counter.getSortedWindows().stream()
                 .map(Window::getCarCount)
                 .reduce(Integer::sum);
     }

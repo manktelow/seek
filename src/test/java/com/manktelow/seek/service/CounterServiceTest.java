@@ -26,7 +26,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-02T16:00:00 11"),
                 Window.fromString("2021-12-02T16:30:00 2"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Map<String, Long> actual = svc.getCarCountByDay();
 
@@ -38,7 +38,7 @@ public class CounterServiceTest {
 
     @Test
     public void getCarCountByDayNoWindows() {
-        CounterService svc = CounterService.withSortedWindows(new ArrayList<>());
+        CounterService svc = CounterService.withWindows(new ArrayList<>());
 
         Map<String, Long> actual = svc.getCarCountByDay();
 
@@ -53,7 +53,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-01T16:30:00 2"),
                 Window.fromString("2021-12-01T17:00:00 1"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -68,7 +68,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-01T16:30:00 1"),
                 Window.fromString("2021-12-01T17:00:00 1"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -84,7 +84,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-01T17:00:00 1"),
                 Window.fromString("2021-12-01T17:30:00 5"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -101,7 +101,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-02T17:30:00 1"),
                 Window.fromString("2021-12-02T18:00:00 1"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -115,7 +115,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-01T16:30:00 1"),
                 Window.fromString("2021-12-02T17:00:00 25"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -130,7 +130,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-01T16:00:00 3"),
                 Window.fromString("2021-12-01T14:30:00 2"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -139,7 +139,7 @@ public class CounterServiceTest {
 
     @Test
     public void getStartOf90MinWithLeastCarsNoWindows() {
-        CounterService svc = CounterService.withSortedWindows(new ArrayList<>());
+        CounterService svc = CounterService.withWindows(new ArrayList<>());
 
         Optional<LocalDateTime> actual = svc.getStartOf90MinWithLeastCars();
 
@@ -155,7 +155,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-02T18:30:00 23"),
                 Window.fromString("2021-12-02T19:00:00 20"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         List<Window> actual = svc.getTopThreeWindowsByCarCount();
 
@@ -174,7 +174,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-02T18:30:00 23"),
                 Window.fromString("2021-12-02T19:00:00 20"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         List<Window> actual = svc.getTopThreeWindowsByCarCount();
 
@@ -191,7 +191,7 @@ public class CounterServiceTest {
                 Window.fromString("2021-12-02T16:00:00 11"),
                 Window.fromString("2021-12-02T16:30:00 2"));
 
-        CounterService svc = CounterService.withSortedWindows(windows);
+        CounterService svc = CounterService.withWindows(windows);
 
         int actual = svc.getTotalCarCount().orElse(0);
 
@@ -200,7 +200,7 @@ public class CounterServiceTest {
 
     @Test
     public void getTotalCarCountNoWindows() {
-        CounterService svc = CounterService.withSortedWindows(new ArrayList<>());
+        CounterService svc = CounterService.withWindows(new ArrayList<>());
 
         int actual = svc.getTotalCarCount().orElse(0);
 

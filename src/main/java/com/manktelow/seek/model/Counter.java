@@ -1,23 +1,22 @@
 package com.manktelow.seek.model;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
 public class Counter {
 
-    private List<Window> windows;
+    private List<Window> sortedWindows;
 
     public Counter(List<Window> windows) {
-        this.windows = windows;
+        this.sortedWindows = windows;
     }
 
-    public List<Window> getWindows() {
-        return windows;
+    public List<Window> getSortedWindows() {
+        return sortedWindows;
     }
 
-    public void setWindows(List<Window> windows) {
-        this.windows = windows;
+    public void setSortedWindows(List<Window> sortedWindows) {
+        this.sortedWindows = sortedWindows;
     }
 
     @Override
@@ -25,18 +24,18 @@ public class Counter {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Counter counter = (Counter) o;
-        return Objects.equals(windows, counter.windows);
+        return Objects.equals(sortedWindows, counter.sortedWindows);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(windows);
+        return Objects.hash(sortedWindows);
     }
 
     @Override
     public String toString() {
         return "Counter{" +
-                "windows=" + windows +
+                "windows=" + sortedWindows +
                 '}';
     }
 }
